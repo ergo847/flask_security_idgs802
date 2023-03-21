@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% from '_macros.html' import render_field %}
+<h1 class="title">Agregar Producto</h1>
+<form method="POST" action="{{ url_for('main.admin_producto_add') }}" enctype="multipart/form-data">
+    {{ datos.form.csrf_token }}
+    <div class="field">
+        {{ render_field(datos.form.nombre, class = 'input') }}
+    </div>
+    <div class="field">
+        {{ render_field(datos.form.descripcion, class = 'textarea') }}
+    </div>
+    <div class="field">
+        {{ render_field(datos.form.imagen, class = 'input') }}
+    </div>
+    <div class="field">
+        {{ render_field(datos.form.precio, class = 'input') }}
+    </div>
+    <div class="field">
+        {{ render_field(datos.form.stock, class = 'input') }}
+    </div>
+    <input class="button is-secondary" type="submit" id="reg-alum" name="registrar" value="Registrar">
+</form>
+{% endblock %}

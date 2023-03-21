@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% from '_macros.html' import render_field %}
+<h1 class="title">Editar Producto {{ datos.producto.id }}</h1>
+<form method="POST" action="{{ url_for('main.admin_producto_edit', id=datos.producto.id) }}" enctype="multipart/form-data">
+    {{ datos.form.csrf_token }}
+    <div class="field">
+        {{ render_field(datos.form.nombre, class = 'input', value = datos.producto.name) }}
+    </div>
+    <div class="field">
+        <label for="descripcion">Descripción</label>
+        <div class="field">
+            <textarea class="textarea" id="descripcion" name="descripcion" class="textarea">{{ datos.producto.description }}</textarea>
+        </div>
+    </div>
+    <div class="field">
+        {{ render_field(datos.form.imagen, class = 'input', value = datos.producto.image) }}
+    </div>
+    <div class="field">
+        {{ render_field(datos.form.precio, class = 'input', value = datos.producto.price) }}
+    </div>
+    <div class="field">
+        {{ render_field(datos.form.stock, class = 'input', value = datos.producto.quantity) }}
+    </div>
+    <input class="button is-secondary" type="submit" id="actualizar" name="actualizar" value="Actualizar">
+</form>
+{% endblock %}

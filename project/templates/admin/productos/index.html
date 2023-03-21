@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h3 class="title is-3">Lista de Productos</h3>
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <a href="{{ url_for('main.admin_producto_add') }}" class="button is-secondary is-fullwidth">Crear</a>
+            </div>
+        </div>
+    
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in datos.productos %}
+                <tr>
+                    <td>{{ producto.id }}</td>
+                    <td><img src="{{ url_for('static', filename='img/'+producto.image) }}" alt="{{ producto.name }}" style="max-width: 50px;"></td>
+                    <td>{{ producto.name }}</td>
+                    <td>
+                        <a href="/admin/productos/editar/{{ producto.id }}" class="button is-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/admin/productos/eliminar/{{ producto.id }}" class="button is-danger"><i class="fa-solid fa-trash-can"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

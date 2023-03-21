@@ -1,0 +1,40 @@
+{% macro render_input(name, placeholder = '', type = 'text') %}
+
+    <div class="control-group">
+        <label for="{{ name }}" class="control-label">{{ placeholder }}</label>
+        <div class="controls">
+            <input type="{{ type }}" name="{{ name }}" placeholder="{{ placeholder }}" value="">
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_field2(field) %}
+    <div class="control-group">
+        <div class="controls">
+            {{ field.label }}
+            {{ field(**kwargs)|safe }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_field(field, input_class='', label_class='', placeholder='') %}
+    <div class="control-group">
+        <div class="controls">
+            {{ field.label(class_=label_class) }}
+            {{ field(class_=input_class, placeholder=placeholder, **kwargs)|safe }}
+        </div>
+    </div>
+{% endmacro %}
+
+<!-- {% macro render_select(field, input_class='', label_class='', options=None) %}
+    <div class="control-group">
+        <div class="controls">
+            {{ field.label(class_=label_class) }}
+            <select class="{{ input_class }}" id="{{ field.id }}" name="{{ field.name }}" {% if field.multiple %}multiple{% endif %}>
+                {% for value, label, selected in options %}
+                    <option value="{{ value }}" {% if selected %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+{% endmacro %} -->
